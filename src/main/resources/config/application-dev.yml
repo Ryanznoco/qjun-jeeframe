@@ -1,0 +1,53 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /jeeframe
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: update
+      use-new-id-generator-mappings: true
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+  datasource:
+    url: jdbc:log4jdbc:mysql://data.qjun.com.cn:3306/test?useUnicode=true&characterEncoding=UTF-8&useSSL=false
+    driver-class-name: net.sf.log4jdbc.DriverSpy
+    username: qjunit
+    password: 810625938
+    druid:
+      initial-size: 1
+      min-idle: 1
+      max-active: 20
+      max-wait: 60000
+      pool-prepared-statements: true
+      max-pool-prepared-statement-per-connection-size: 20
+      validation-query: SELECT 1 FROM DUAL
+      test-on-borrow: false
+      test-while-idle: true
+      test-on-return: false
+      time-between-eviction-runs-millis: 60000
+      min-evictable-idle-time-millis: 300000
+      filters: stat,wall,log4j,config
+      web-stat-filter:
+        enabled: true
+        url-pattern: /*
+        exclusions: "*.js,*.gif,*.jpg,*.png,*.css,*.ico,/druid/*"
+      stat-view-servlet:
+        enable: true
+        reset-enable: false
+        url-pattern: /druid/*
+        login-username: qjun-jeeframe
+        login-password: 810625938
+        allow: 127.0.0.1
+  resources:
+    static-locations: classpath:/static/
+  mvc:
+    static-path-pattern: /static/**
+    view:
+      prefix: classpath:/templates/
+      suffix: .html
+  thymeleaf:
+    mode: HTML
+    cache: false
+logging:
+  config: classpath:config/logback-dev.xml
+debug: false
