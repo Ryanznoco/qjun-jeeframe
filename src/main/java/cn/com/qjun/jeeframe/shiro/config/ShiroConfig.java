@@ -62,6 +62,7 @@ public class ShiroConfig {
     @Bean
     public HashedCredentialsMatcher hashedCredentialsMatcher() {
         HashedCredentialsMatcher matcher = new HashedCredentialsMatcher();
+        matcher.setHashIterations(1024);
         matcher.setHashAlgorithmName("MD5");
         return matcher;
     }

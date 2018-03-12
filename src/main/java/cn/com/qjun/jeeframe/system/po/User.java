@@ -31,7 +31,7 @@ public class User extends DataEntity {
     /**
      * 登录密码
      */
-    @Column(name = "PASSWORD", length = 32, nullable = false)
+    @Column(name = "PASSWORD", length = 50, nullable = false)
     private String password;
     /**
      * 手机号码
